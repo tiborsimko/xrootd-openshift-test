@@ -1,0 +1,25 @@
+---
+apiVersion: v1
+kind: DeploymentConfig
+metadata:
+  name: xrootdpyfs
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: xrootdpyfs
+    spec:
+      containers:
+      - name: xrootdpyfs
+        image: xrootdpyfs:latest
+  triggers:
+    - type: ImageChange
+      imageChangeParams:
+        automatic: true
+        containerNames:
+          - xrootdpyfs
+        from:
+          kind: ImageStreamTag
+          name: xrootdpyfs:latest
+    - type: ConfigChange

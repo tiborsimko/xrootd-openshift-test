@@ -1,0 +1,28 @@
+---
+kind: BuildConfig
+apiVersion: v1
+metadata:
+  name: xrootdpyfs-build
+spec:
+  resources:
+    requests:
+      cpu: 1
+      memory: 256Mi
+    limits:
+      cpu: 2
+      memory: 512Mi
+  source:
+    type: "Git"
+    git:
+      uri: "https://github.com/tiborsimko/xrootd-openshift-test"
+      ref: "master"
+  strategy:
+    type: "Docker"
+    dockerStrategy:
+      from:
+        kind: "ImageStreamTag"
+        name: "centos:7"
+  output:
+    to:
+      kind: "ImageStreamTag"
+      name: "xrootdpyfs:latest"
