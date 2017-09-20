@@ -83,7 +83,23 @@ Building image locally and pushing to Dockerhub::
 Building xrootd from sources
 ''''''''''''''''''''''''''''
 
-FIXME
+Replacing dockerfile name in `xrootdpyfs-build.yaml` for `Dockerfile-building-xrootd-from-sources`::
+
+  $ oc create -f openshift/xrootdpyfs-output-image.yaml
+  imagestream "xrootdpyfs" created
+  $ oc create -f openshift/xrootdpyfs-build.yaml
+  buildconfig "xrootdpyfs-build" created
+  $ oc create -f openshift/xrootdpyfs-deployment.yaml
+  deploymentconfig "xrootdpyfs" created
+  $ oc start-build xrootdpyfs-build --follow
+  $ oc debug dc/xrootdpyfs
+  Debugging with pod/xrootdpyfs-from-sources-debug, original command: /usr/bin/python /tmp/test.py
+  Waiting for pod to start ...
+  Pod IP: 10.76.8.146
+  If you don't see a command prompt, try pressing enter.
+                                                      sh-4.2$
+  sh-4.2$ python /tmp/test.py
+  Segmentation fault
 
 Using Ubuntu as base image
 ''''''''''''''''''''''''''

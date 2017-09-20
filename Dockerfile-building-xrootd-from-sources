@@ -1,0 +1,39 @@
+FROM centos:7
+
+RUN yum install -y \
+    epel-release
+
+RUN yum groupinstall -y "Development tools" && \
+    yum install -y \
+    python-pip \
+    git \
+    cmake \
+    gcc-c++ \
+    xrootd-client \
+    xrootd-client-devel \
+    xrootd-client-libs \
+    xrootd-python \
+    zlib-devel \
+    readline \
+    readline-devel \
+    openssl-devel \
+    libxml2-devel \
+    which \
+    python-devel
+
+RUN git clone https://github.com/xrootd/xrootd.git /xrootd
+RUN cd /xrootd && \
+    mkdir build && \
+    cd build && \
+    cmake /xrootd -DCMAKE_INSTALL_PREFIX=/usr -Wno-dev && \
+    make && \
+    cd /xrootd && \
+    cp VERSION_INFO bindings/python/ && \
+    cd /xrootd/bindings/python && \
+    python setup_pypi.py install
+
+RUN pip install xrootdpyfs
+
+ADD test.py /tmp/test.py
+
+CMD ["/usr/bin/python", "/tmp/test.py"]
