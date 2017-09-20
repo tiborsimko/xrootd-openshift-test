@@ -1,0 +1,21 @@
+notifications:
+  email: false
+
+sudo: false
+
+language: python
+
+matrix:
+  fast_finish: true
+
+python:
+  - "2.7"
+
+services:
+  - docker
+
+install:
+  - "docker build -t xrootd-openshift-test ."
+
+script:
+  - "docker run --rm xrootd-openshift-test"
