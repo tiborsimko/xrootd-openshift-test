@@ -1,3 +1,8 @@
+.. image:: https://travis-ci.org/tiborsimko/xrootd-openshift-test.png
+   :target: https://travis-ci.org/tiborsimko/xrootd-openshift-test
+.. image:: https://img.shields.io/badge/licence-GPL_3-green.svg?style=flat
+   :target: https://raw.githubusercontent.com/tiborsimko/xrootd-openshift-test/master/COPYING
+
 Testing XRootD container on OpenShift
 -------------------------------------
 
