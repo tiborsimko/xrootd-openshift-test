@@ -78,3 +78,14 @@ Building image locally and pushing to Dockerhub::
   If you don't see a command prompt, try pressing enter.
   sh-4.2$ python /tmp/test.py
   Segmentation fault
+
+
+Building xrootd from sources
+''''''''''''''''''''''''''''
+
+FIXME
+
+Using Ubuntu as base image
+''''''''''''''''''''''''''
+
+FIXME

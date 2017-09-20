@@ -19,9 +19,7 @@ spec:
   strategy:
     type: "Docker"
     dockerStrategy:
-      from:
-        kind: "ImageStreamTag"
-        name: "centos:7"
+      dockerfilePath: <dockerfile-name:Dockerfile-centos7>
   output:
     to:
       kind: "ImageStreamTag"
