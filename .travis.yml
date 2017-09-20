@@ -15,7 +15,9 @@ services:
   - docker
 
 install:
-  - "docker build -t xrootd-openshift-test ."
+  - "docker build -t xrootd-openshift-test-centos7 . -f Dockerfile-centos7"
+  - "docker build -t xrootd-openshift-test-centos7-from-sources . -f Dockerfile-building-xrootd-from-sources"
 
 script:
-  - "docker run --rm xrootd-openshift-test"
+  - "docker run --rm xrootd-openshift-test-centos7"
+  - "docker run --rm xrootd-openshift-test-centos7-from-sources"
