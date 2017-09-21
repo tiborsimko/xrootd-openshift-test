@@ -101,7 +101,17 @@ Replacing dockerfile name in `xrootdpyfs-build.yaml` for `Dockerfile-building-xr
   sh-4.2$ python /tmp/test.py
   Segmentation fault
 
-Using Ubuntu as base image
-''''''''''''''''''''''''''
 
-FIXME
+Running locally with random user
+''''''''''''''''''''''''''''''''
+
+Build CentOS 7 image locally and run it::
+
+  $ docker build -t xrootd-openshift-test-centos7 . -f Dockerfile-centos7
+  $ docker run --rm --user 9999 xrootd-openshift-test-centos7 bash
+  bash-4.2$ python /tmp/test.py
+  Segmentation fault
+  bash-4.2$ python -c 'import xrootdpyfs'
+  Segmentation fault
+  bash-4.2$ python -c 'import XRootD.client'
+  Segmentation fault
