@@ -1,0 +1,17 @@
+FROM centos:7
+RUN yum install -y epel-release
+RUN yum install -y \
+    python-pip \
+    xrootd \
+    xrootd-client \
+    xrootd-client-devel \
+    xrootd-python
+RUN pip install xrootdpyfs
+ADD test.py /tmp/test.py
+### user name recognition at runtime w/ an arbitrary uid - for OpenShift deployments
+COPY uid_entrypoint /
+RUN chmod g=u /etc/passwd && \
+    chmod ug+x /uid_entrypoint
+USER 1001
+ENTRYPOINT [ "/uid_entrypoint" ]
+CMD ["/usr/bin/python", "/tmp/test.py"]
