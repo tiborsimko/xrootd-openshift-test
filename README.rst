@@ -115,3 +115,13 @@ Build CentOS 7 image locally and run it::
   Segmentation fault
   bash-4.2$ python -c 'import XRootD.client'
   Segmentation fault
+
+
+Final fix: naming random user at run time
+'''''''''''''''''''''''''''''''''''''''''
+
+Following `OpenShift docs <https://docs.openshift.org/latest/creating_images/guidelines.html#openshift-origin-specific-guidelines>`_, we will use `uid_entrypoint` script to name the user at run time. See `Dockerfile-centos7-name-user-at-runtime`::
+
+  $ docker build -t xrootd-openshift-test-centos7 . -f Dockerfile-centos7-name-user-at-runtime
+  $ docker run --rm --user 9999 xrootd-openshift-test-centos7 python /tmp/test.py
+  OK
